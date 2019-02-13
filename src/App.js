@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import Person from "./Person/Person";
 
 class App extends Component {
@@ -45,7 +45,7 @@ class App extends Component {
 
     render() {
 
-        let persons = null;
+        let persons     = null;
 
         if ( this.state.showPersons ) {
             persons = (
@@ -60,17 +60,17 @@ class App extends Component {
                         />
                     })}
                 </div>
-            )
+            );
         }
 
         return (
-            <div className="App">
-                <button 
-                    onClick={this.togglePersonsHandler} >Conditional</button>
-                    <div>
-                        {persons}
-                    </div>
-            </div>
+                <div className="App">
+                    <button 
+                        onClick={this.togglePersonsHandler} className={styles.color}>Conditional</button>
+                        <div>
+                            {persons}
+                        </div>
+                </div>
         );
     }
 }
