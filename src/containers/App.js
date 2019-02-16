@@ -3,6 +3,12 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        console.log("app.js constructor");
+    };
+
     state = {
         persons : [
             {
@@ -43,7 +49,12 @@ class App extends Component {
         this.setState({showPersons : !this.state.showPersons})
     }
 
+    componentDidMount = () => {
+        console.log("appjs component did mount")
+    }
+
     render() {
+        console.log("app.js render")
         let persons  = null;
 
         if ( this.state.showPersons ) {
@@ -51,7 +62,7 @@ class App extends Component {
                 <div>
                     <Persons
                         persons={this.state.persons}
-                        clicked={this.togglePersonsHandler}
+                        clicked={this.deletePersonHandler}
                         changed={this.nameChangedHandler}
                     />
                 </div>
@@ -61,6 +72,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Cockpit
+                    title={this.props.appTitle}
                     toggle={this.togglePersonsHandler}
                     showPerson={this.state.showPersons}
                 />
