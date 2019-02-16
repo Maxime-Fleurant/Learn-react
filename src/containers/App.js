@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import styles from './App.module.css';
-import Person from "./Person/Person";
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary"
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
     state = {
@@ -45,35 +44,28 @@ class App extends Component {
     }
 
     render() {
-
         let persons  = null;
-        let btnClass = styles.color;
 
         if ( this.state.showPersons ) {
             persons = (
                 <div>
-                    {this.state.persons.map(( person, index ) => {
-                        return <ErrorBoundary key = {index}>
-                            <Person 
-                                click   = {this.deletePersonHandler.bind(this, index)}
-                                name    = {person.name}
-                                age     = {person.age}
-                                changed = {( event ) => this.nameChangedHandler(event, person.id)} />
-                        </ErrorBoundary>
-                    })}
+                    <Persons
+                        persons={this.state.persons}
+                        clicked={this.togglePersonsHandler}
+                        changed={this.nameChangedHandler}
+                    />
                 </div>
             );
-            btnClass = styles.red
         }
 
         return (
-                <div className="App">
-                    <button 
-                        onClick={this.togglePersonsHandler} className={btnClass}>Conditional</button>
-                        <div>
-                            {persons}
-                        </div>
-                </div>
+            <div className="App">
+                <Cockpit
+                    toggle={this.togglePersonsHandler}
+                    showPerson={this.state.showPersons}
+                />
+                {persons}
+            </div>
         );
     }
 }
