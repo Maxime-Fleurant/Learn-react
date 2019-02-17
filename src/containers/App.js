@@ -53,6 +53,15 @@ class App extends Component {
         console.log("appjs component did mount")
     }
 
+    shouldComponentUpdate = () => {
+        console.log("appjs shouldocmponent update");
+        return true;
+    }
+
+    componentDidUpdate = () => {
+        console.log("appjs component did update")
+    }
+
     render() {
         console.log("app.js render")
         let persons  = null;
